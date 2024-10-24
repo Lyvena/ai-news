@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from 'next-themes';
+import { Logo } from './Logo';
 
 export const Header: React.FC = () => {
   const { theme, setTheme } = useTheme();
@@ -13,8 +14,7 @@ export const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <img src="/logo.svg" alt="AI-PGF Logo" className="h-8 w-8 mr-2" />
-            <span className="text-xl font-bold text-gray-800 dark:text-white">AI-PGF</span>
+            <Logo />
           </Link>
           <nav className="ml-8 space-x-4">
             <Link 
