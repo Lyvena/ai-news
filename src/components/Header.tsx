@@ -35,6 +35,12 @@ export const Header: React.FC = () => {
             >
               Contact
             </Link>
+            <Link 
+              to="/settings" 
+              className={`text-sm ${location.pathname === '/settings' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'}`}
+            >
+              Settings
+            </Link>
           </nav>
         </div>
         <div className="flex items-center space-x-4">
