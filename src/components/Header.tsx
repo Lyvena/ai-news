@@ -30,29 +30,31 @@ export const Header: React.FC = () => {
           <nav className="ml-8 space-x-4">
             <Link 
               to="/" 
-              className={`text-sm ${location.pathname === '/' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'}`}
+              className={`text-sm ${location.pathname === '/' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'} hover:text-primary transition-colors`}
             >
               Home
             </Link>
             <Link 
               to="/news" 
-              className={`text-sm ${location.pathname === '/news' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'}`}
+              className={`text-sm ${location.pathname === '/news' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'} hover:text-primary transition-colors`}
             >
               News Feed
             </Link>
-            <Link 
-              to="/contact" 
-              className={`text-sm ${location.pathname === '/contact' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'}`}
-            >
-              Contact
-            </Link>
             {session && (
-              <Link 
-                to="/settings" 
-                className={`text-sm ${location.pathname === '/settings' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'}`}
-              >
-                Settings
-              </Link>
+              <>
+                <Link 
+                  to="/contact" 
+                  className={`text-sm ${location.pathname === '/contact' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'} hover:text-primary transition-colors`}
+                >
+                  Contact
+                </Link>
+                <Link 
+                  to="/settings" 
+                  className={`text-sm ${location.pathname === '/settings' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'} hover:text-primary transition-colors`}
+                >
+                  Settings
+                </Link>
+              </>
             )}
           </nav>
         </div>
