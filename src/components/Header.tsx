@@ -1,13 +1,24 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { MoonIcon, SunIcon } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { MoonIcon, SunIcon, LogOutIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from 'next-themes';
 import { Logo } from './Logo';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'sonner';
 
 export const Header: React.FC = () => {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { session } = useAuth();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    toast.success('Logged out successfully');
+    navigate('/login');
+  };
 
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm">
@@ -35,18 +46,27 @@ export const Header: React.FC = () => {
             >
               Contact
             </Link>
-            <Link 
-              to="/settings" 
-              className={`text-sm ${location.pathname === '/settings' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'}`}
-            >
-              Settings
-            </Link>
+            {session && (
+              <Link 
+                to="/settings" 
+                className={`text-sm ${location.pathname === '/settings' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'}`}
+              >
+                Settings
+              </Link>
+            )}
           </nav>
         </div>
         <div className="flex items-center space-x-4">
-          <Link to="/signup">
-            <Button variant="outline">Sign Up</Button>
-          </Link>
+          {!session ? (
+            <Link to="/login">
+              <Button variant="outline">Sign In</Button>
+            </Link>
+          ) : (
+            <Button variant="outline" onClick={handleLogout} className="gap-2">
+              <LogOutIcon className="h-4 w-4" />
+              Sign Out
+            </Button>
+          )}
           <Button
             variant="ghost"
             size="icon"
