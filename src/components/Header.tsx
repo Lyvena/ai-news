@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
     <header className="bg-white dark:bg-gray-800 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <Logo />
           </Link>
           <nav className="ml-8 space-x-4">
