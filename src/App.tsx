@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import Landing from "./pages/Landing";
 import Index from "./pages/Index";
 import SignUp from "./pages/SignUp";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
             <Route path="/" element={<Landing />} />
             <Route path="/news" element={<Index />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

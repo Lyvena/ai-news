@@ -29,6 +29,12 @@ export const Header: React.FC = () => {
             >
               News Feed
             </Link>
+            <Link 
+              to="/contact" 
+              className={`text-sm ${location.pathname === '/contact' ? 'text-primary font-semibold' : 'text-gray-600 dark:text-gray-300'}`}
+            >
+              Contact
+            </Link>
           </nav>
         </div>
         <div className="flex items-center space-x-4">
