@@ -4,22 +4,16 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon, TagIcon, ExternalLinkIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-interface NewsItem {
-  id: string;
-  title: string;
-  summary: string;
-  source: string;
-  date: string;
-  tags: string[];
-  url: string;
-}
+import { NewsItem } from '@/lib/api';
 
 interface NewsCardProps {
   news: NewsItem;
 }
 
 export const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
+  // Format the date from created_at if date is not provided
+  const displayDate = news.date || new Date(news.created_at).toLocaleDateString();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -33,7 +27,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
           </CardTitle>
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {news.date}
+            {displayDate}
           </div>
         </CardHeader>
         <CardContent>
