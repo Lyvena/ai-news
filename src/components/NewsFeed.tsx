@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { NewsCard } from '@/components/NewsCard';
+import { NewsSummary } from '@/components/NewsSummary';
 import { Skeleton } from '@/components/ui/skeleton';
 import { fetchNews } from '@/lib/api';
 
@@ -13,21 +13,32 @@ export const NewsFeed: React.FC = () => {
   if (isLoading) {
     return (
       <div className="space-y-4">
-        {[...Array(5)].map((_, i) => (
-          <Skeleton key={i} className="h-40 w-full" />
+        {[...Array(3)].map((_, i) => (
+          <Skeleton key={i} className="h-[300px] w-full rounded-xl" />
         ))}
       </div>
     );
   }
 
   if (error) {
-    return <div className="text-red-500">Error loading news feed.</div>;
+    return (
+      <div className="text-red-500 text-center py-8">
+        Error loading news feed. Please try again later.
+      </div>
+    );
   }
 
   return (
     <div className="space-y-6">
       {news?.map((item) => (
-        <NewsCard key={item.id} news={item} />
+        <NewsSummary
+          key={item.id}
+          title={item.title}
+          content={item.summary}
+          source={item.source}
+          url={item.url}
+          tags={item.tags}
+        />
       ))}
     </div>
   );
