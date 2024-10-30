@@ -9,7 +9,98 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      news: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          published_at: string | null
+          source: string
+          summary: string
+          tags: string[] | null
+          title: string
+          url: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          published_at?: string | null
+          source: string
+          summary: string
+          tags?: string[] | null
+          title: string
+          url: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          published_at?: string | null
+          source?: string
+          summary?: string
+          tags?: string[] | null
+          title?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          id: string
+          newsletter_subscription: boolean | null
+          tags_preference: string[] | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          id: string
+          newsletter_subscription?: boolean | null
+          tags_preference?: string[] | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          newsletter_subscription?: boolean | null
+          tags_preference?: string[] | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      user_bookmarks: {
+        Row: {
+          created_at: string | null
+          id: string
+          news_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          news_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          news_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_bookmarks_news_id_fkey"
+            columns: ["news_id"]
+            isOneToOne: false
+            referencedRelation: "news"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
